@@ -29,9 +29,9 @@
 						</tr>
 					</thead>
 					<tbody id="tabela-pacientes">
-						<tr class="paciente" id="paciente">
+						<tr class="paciente">
 							<td class="info-nome">Paulo</td>
-							<td class="info-peso">100</td>
+							<td class="info-peso">40</td>
 							<td class="info-altura">2.00</td>
 							<td class="info-gordura">10</td>
 							<td class="info-imc">0</td>
@@ -39,7 +39,7 @@
 
 						<tr class="paciente" >
 							<td class="info-nome">João</td>
-							<td class="info-peso">80</td>
+							<td class="info-peso">500</td>
 							<td class="info-altura">1.72</td>
 							<td class="info-gordura">40</td>
 							<td class="info-imc">0</td>
@@ -48,7 +48,7 @@
 						<tr class="paciente" >
 							<td class="info-nome">Erica</td>
 							<td class="info-peso">54</td>
-							<td class="info-altura">1.64</td>
+							<td class="info-altura">10.64</td>
 							<td class="info-gordura">14</td>
 							<td class="info-imc">0</td>
 						</tr>
@@ -73,19 +73,49 @@
 			</section>
 		</main>
 		<script>
-			var paciente = document.querySelector("#paciente");
 
+			//instanciando os pacientes da tabela
+			var pacientes = document.querySelectorAll(".paciente");
+			 
+		//loop que percorre os pacientes da tabela e calcula o IMC	 
+		for( var i =0; i <pacientes.length; i=i + 1){
+
+			//variavel referente ao indice do paciente
+			 var paciente = pacientes[i];
+
+
+			//variaveis elementos TD
 			var tdPeso = paciente.querySelector(".info-peso");
 			var tdAltura = paciente.querySelector(".info-altura");
 			var tdImc = paciente.querySelector(".info-imc")
 
+			//variaveis dados da tabela
 			var peso = tdPeso.textContent;
 			var altura = tdAltura.textContent;
 			
-			var imc = peso / (altura * altura);
-			
-			tdImc.textContent = imc;
+			//variaveis de validação
+			var pesoEhValido = true;
+			var alturaEhValido = true;
 
+			//validação altura e peso
+			if(peso >= 200 || peso <=0) {
+				pesoEhValido = false;
+				tdImc.textContent = "Peso inválido";
+				paciente.classList.add('paciente-invalido');
+				}
+
+			if(altura >= 3.00 || altura <=0){
+				alturaEhValido = false;
+				tdImc.textContent = "Altura inválido";
+				paciente.classList.add('paciente-invalido');
+			}
+
+			// calculo imc
+			if(pesoEhValido && alturaEhValido){
+			var imc = peso / (altura * altura);
+			tdImc.textContent = imc.toFixed(2);
+			}
+		}
 		</script>
 	</body>
 </html>
