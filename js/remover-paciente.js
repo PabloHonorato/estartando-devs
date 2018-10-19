@@ -1,9 +1,9 @@
-var pacientes = document.querySelectorAll('.paciente');
+var pacientes = $('.paciente');
 
-var tabela = document.querySelector('#tabela-pacientes');
+var tabela = $('#tabela-pacientes')[0];
 
-tabela.addEventListener('dblclick', function(event){
-    event.target.parentNode.classList.add('fadeOut');
+$(tabela).dblclick( function(event){
+    $(event.target.parentNode).addClass('fadeOut');
     setTimeout(function(){
         event.target.parentNode.remove();
     }, 1000);

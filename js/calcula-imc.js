@@ -1,7 +1,5 @@
-
-
 			//instanciando os pacientes da tabela
-			var pacientes = document.querySelectorAll(".paciente");
+			var pacientes = $(".paciente");
 			 
 		//loop que percorre os pacientes da tabela e calcula o IMC	 
 		for( var i =0; i <pacientes.length; i=i + 1){
@@ -11,9 +9,9 @@
 
 
 			//variaveis elementos TD
-			var tdPeso = paciente.querySelector(".info-peso");
-			var tdAltura = paciente.querySelector(".info-altura");
-			var tdImc = paciente.querySelector(".info-imc")
+			var tdPeso = $(".info-peso")[i];
+			var tdAltura = $(".info-altura")[i];
+			var tdImc = $(".info-imc")[i];
 
 			//variaveis dados da tabela
 			var peso = tdPeso.textContent;
@@ -26,19 +24,19 @@
 			//validação altura e peso
 			if(!pesoEhValido) {
 				pesoEhValido = false;
-				tdImc.textContent = "Peso inválido";
-				paciente.classList.add('paciente-invalido');
+				$(tdImc).text ("Peso inválido");
+				$(paciente).addClass('paciente-invalido');
 				}
 
 			if(!alturaEhValido){
 				alturaEhValido = false;
-				tdImc.textContent = "Altura inválido";
-				paciente.classList.add('paciente-invalido');
+				$(tdImc).text("Altura inválido");
+				$(paciente).addClass('paciente-invalido');
 			}
 
 			// calculo imc
 			if(pesoEhValido && alturaEhValido){
-			tdImc.textContent = calculaImc(peso, altura);
+			$(tdImc).text(calculaImc(peso, altura));
 			}
 
 		}
