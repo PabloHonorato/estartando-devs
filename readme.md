@@ -1,2 +1,2 @@
 
-este é o meu prejeto do estartando devs
+este é o meu projeto do estartando devs
